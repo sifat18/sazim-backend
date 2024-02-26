@@ -7,6 +7,14 @@ export const typeDefs = `#graphql
     transactions: [Transaction]
     transaction(id: Int!): Transaction
   }
+  type Mutation {
+    signUp(email: String!
+        firstName: String!
+        lastName: String!
+        password: String!
+        address: String
+        phone: Int): User
+  }
 
     type User {
         id: Int!
