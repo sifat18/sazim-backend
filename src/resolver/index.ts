@@ -6,11 +6,21 @@ type UserInfo = {
   password: string;
   lastName: string;
 };
+type Category = {
+  name: string;
+};
 export const resolvers = {
-  Query: {},
+  Query: {
+    categories: async () => {
+      return await prisma.category.findMany();
+    },
+  },
   Mutation: {
     signUp: async (_: any, args: UserInfo, context: any) => {
       return await prisma.user.create({ data: args });
+    },
+    createCategory: async (_: any, args: Category, context: any) => {
+      return await prisma.category.create({ data: args });
     },
   },
 };

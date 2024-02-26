@@ -1,5 +1,6 @@
 export const typeDefs = `#graphql
   type Query {
+    me: User
     user(id: Int!): User
     products: [Product]
     product(id: Int!): Product
@@ -14,6 +15,8 @@ export const typeDefs = `#graphql
         password: String!
         address: String
         phone: Int): User
+
+    createCategory(name: String!): Category
   }
 
     type User {
