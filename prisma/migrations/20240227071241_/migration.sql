@@ -27,6 +27,16 @@ CREATE TABLE "categories" (
 );
 
 -- CreateTable
+CREATE TABLE "rentypes" (
+    "id" SERIAL NOT NULL,
+    "label" TEXT NOT NULL,
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" TIMESTAMP(3) NOT NULL,
+
+    CONSTRAINT "rentypes_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
 CREATE TABLE "products" (
     "id" SERIAL NOT NULL,
     "title" TEXT NOT NULL,
@@ -35,6 +45,7 @@ CREATE TABLE "products" (
     "description" TEXT NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
+    "rentId" INTEGER NOT NULL,
     "createdBy" INTEGER,
 
     CONSTRAINT "products_pkey" PRIMARY KEY ("id")
@@ -69,6 +80,9 @@ CREATE INDEX "_CategoryToProduct_B_index" ON "_CategoryToProduct"("B");
 
 -- AddForeignKey
 ALTER TABLE "products" ADD CONSTRAINT "products_createdBy_fkey" FOREIGN KEY ("createdBy") REFERENCES "users"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "products" ADD CONSTRAINT "products_rentId_fkey" FOREIGN KEY ("rentId") REFERENCES "rentypes"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "transactions" ADD CONSTRAINT "transactions_productId_fkey" FOREIGN KEY ("productId") REFERENCES "products"("id") ON DELETE RESTRICT ON UPDATE CASCADE;

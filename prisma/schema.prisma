@@ -39,6 +39,16 @@ model Category {
   @@map("categories")
 }
 
+model RentType {
+  id        Int       @id @default(autoincrement())
+  label     String
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  Product   Product[]
+
+  @@map("rentypes")
+}
+
 model Product {
   id           Int           @id @default(autoincrement())
   title        String
@@ -47,10 +57,12 @@ model Product {
   description  String
   createdAt    DateTime      @default(now())
   updatedAt    DateTime      @updatedAt
+  rentId       Int
   categories   Category[]
   createdBy    Int?
   transactions Transaction[]
   user         User?         @relation(fields: [createdBy], references: [id])
+  rentType     RentType      @relation(fields: [rentId], references: [id])
 
   @@map("products")
 }

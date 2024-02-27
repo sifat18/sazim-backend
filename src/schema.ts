@@ -5,6 +5,7 @@ export const typeDefs = `#graphql
     products: [Product]
     product(id: Int!): Product
     categories: [Category]
+    rentypes: [Rentype]
     transactions: [Transaction]
     transaction(id: Int!): Transaction
   }
@@ -17,13 +18,15 @@ export const typeDefs = `#graphql
         phone: Int): User
 
     createCategory(name: String!): Category
+    addRent(label: String!): Rentype
     signin(email: String!, password: String!): User
-    createProduct (
+    createProduct(
         title: String!
         price: Float!
         rent: Float!
+        rentId: Int!
         description: String!
-        categoryIds: [Int!]! 
+        categoryIds: [Int!]!
         createdBy: Int
       ): Product
   }
@@ -47,11 +50,18 @@ export const typeDefs = `#graphql
         createdAt: String!
         products: [Product]
       }
+      type Rentype {
+        id: Int!
+        label: String!
+        createdAt: String!
+        products: [Product]
+      }
       type Product {
         id: Int!
         title: String!
         price: Float!
         rent: Float!
+        rentType: Rentype!
         description: String!
         createdAt: String!
         categories: [Category]!

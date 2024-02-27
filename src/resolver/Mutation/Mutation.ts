@@ -13,7 +13,8 @@ const prisma = new PrismaClient();
 export const Mutation = {
   createProduct: async (_: any, args: any, context: any) => {
     console.log(args);
-    const { title, price, rent, description, categoryIds, createdBy } = args;
+    const { title, price, rent, description, categoryIds, rentId, createdBy } =
+      args;
 
     // Create the product
     const createdProduct = await prisma.product.create({
@@ -28,9 +29,13 @@ export const Mutation = {
             id: categoryId,
           })),
         },
+        rentType: {
+          connect: { id: rentId },
+        },
       },
       include: {
         categories: true,
+        rentType: true,
       },
     });
 
@@ -42,6 +47,9 @@ export const Mutation = {
   },
   createCategory: async (_: any, args: Category, context: any) => {
     return await prisma.category.create({ data: args });
+  },
+  addRent: async (_: any, args: any, context: any) => {
+    return await prisma.rentType.create({ data: args });
   },
   signin: async (
     _: any,
