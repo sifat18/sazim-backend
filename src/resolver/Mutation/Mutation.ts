@@ -41,10 +41,40 @@ export const Mutation = {
 
     return createdProduct;
   },
+  updateProduct: async (_: any, args: any, context: any) => {
+    const {
+      productId,
+      title,
+      description,
+      price,
+      rent,
+      rentTypeId,
+      categoryIds,
+    } = args;
 
-  signUp: async (_: any, args: UserInfo, context: any) => {
-    return await prisma.user.create({ data: args });
+    const updatedProduct = await prisma.product.update({
+      where: { id: productId },
+      data: {
+        title: title,
+        description: description,
+        price: price,
+        rent: rent,
+        rentType: {
+          connect: { id: rentTypeId },
+        },
+        categories: {
+          set: categoryIds.map((categoryId: number) => ({ id: categoryId })),
+        },
+      },
+      include: {
+        rentType: true,
+        categories: true,
+      },
+    });
+
+    return updatedProduct;
   },
+
   createCategory: async (_: any, args: Category, context: any) => {
     return await prisma.category.create({ data: args });
   },
@@ -65,5 +95,8 @@ export const Mutation = {
     } else {
       return null;
     }
+  },
+  signUp: async (_: any, args: UserInfo, context: any) => {
+    return await prisma.user.create({ data: args });
   },
 };

@@ -29,6 +29,15 @@ export const typeDefs = `#graphql
         categoryIds: [Int!]!
         createdBy: Int
       ): Product
+      updateProduct(
+        productId: Int!
+        title: String
+        description: String
+        price: Float
+        rent: Float
+        rentTypeId: Int
+        categoryIds: [Int!]
+      ): Product
   }
     
 
