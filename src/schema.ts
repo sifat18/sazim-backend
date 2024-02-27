@@ -27,7 +27,7 @@ export const typeDefs = `#graphql
         rentId: Int!
         description: String!
         categoryIds: [Int!]!
-        createdBy: Int
+        createdBy: Int!
       ): Product
       updateProduct(
         productId: Int!
@@ -76,9 +76,8 @@ export const typeDefs = `#graphql
         description: String!
         createdAt: String!
         categories: [Category]!
-        createdBy: Int
         transactions: [Transaction]
-        user: [User]
+        user: User
       }
         type Transaction {
             id: Int!

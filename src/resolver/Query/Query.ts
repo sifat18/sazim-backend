@@ -12,6 +12,7 @@ export const Query = {
       include: {
         categories: true,
         rentType: true,
+        user: true,
       },
     });
 
@@ -20,7 +21,14 @@ export const Query = {
   user: async (_: any, { id }: any) => {
     const user = await prisma.user.findUnique({
       where: { id: id },
-      include: { products: true },
+      include: {
+        products: {
+          include: {
+            categories: true,
+            rentType: true,
+          },
+        },
+      },
     });
 
     if (!user) {

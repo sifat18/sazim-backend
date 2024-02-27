@@ -59,9 +59,9 @@ model Product {
   updatedAt    DateTime      @updatedAt
   rentId       Int
   categories   Category[]
-  createdBy    Int?
+  createdBy    Int
   transactions Transaction[]
-  user         User?         @relation(fields: [createdBy], references: [id])
+  user         User          @relation(fields: [createdBy], references: [id])
   rentType     RentType      @relation(fields: [rentId], references: [id])
 
   @@map("products")

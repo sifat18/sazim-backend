@@ -23,7 +23,9 @@ export const Mutation = {
         price,
         rent,
         description,
-        createdBy,
+        user: {
+          connect: { id: createdBy }, // Connect createdBy with an existing user
+        },
         categories: {
           connect: categoryIds.map((categoryId: number) => ({
             id: categoryId,
@@ -36,6 +38,7 @@ export const Mutation = {
       include: {
         categories: true,
         rentType: true,
+        user: true,
       },
     });
 
