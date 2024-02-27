@@ -17,7 +17,20 @@ export const typeDefs = `#graphql
         phone: Int): User
 
     createCategory(name: String!): Category
+    signin(email: String!, password: String!): User
+    createProduct (
+        title: String!
+        price: Float!
+        rent: Float!
+        description: String!
+        categoryIds: [Int!]! 
+        createdBy: Int
+      ): Product
   }
+    input CategoryInput { 
+        id: Int
+        name: String
+    }
 
     type User {
         id: Int!
@@ -44,7 +57,7 @@ export const typeDefs = `#graphql
         rent: Float!
         description: String!
         createdAt: String!
-        categories: [Category!]!
+        categories: [Category]!
         createdBy: Int
         transactions: [Transaction]
         user: [User]
