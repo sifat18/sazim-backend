@@ -4,6 +4,9 @@ export const Query = {
   categories: async () => {
     return await prisma.category.findMany();
   },
+  rentypes: async () => {
+    return await prisma.rentType.findMany();
+  },
   products: async () => {
     const productsWithCategories = await prisma.product.findMany({
       include: {
