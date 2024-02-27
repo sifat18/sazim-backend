@@ -27,10 +27,7 @@ export const typeDefs = `#graphql
         createdBy: Int
       ): Product
   }
-    input CategoryInput { 
-        id: Int
-        name: String
-    }
+    
 
     type User {
         id: Int!

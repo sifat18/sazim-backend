@@ -14,6 +14,15 @@ export const resolvers = {
     categories: async () => {
       return await prisma.category.findMany();
     },
+    products: async () => {
+      const productsWithCategories = await prisma.product.findMany({
+        include: {
+          categories: true,
+        },
+      });
+
+      return productsWithCategories;
+    },
   },
   Mutation: {
     createProduct: async (_: any, args: any, context: any) => {
