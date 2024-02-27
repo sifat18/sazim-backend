@@ -8,6 +8,7 @@ export const Query = {
     const productsWithCategories = await prisma.product.findMany({
       include: {
         categories: true,
+        rentType: true,
       },
     });
 

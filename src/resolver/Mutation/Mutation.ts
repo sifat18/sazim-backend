@@ -74,7 +74,25 @@ export const Mutation = {
 
     return updatedProduct;
   },
+  deleteProduct: async (_: any, args: any, context: any) => {
+    // Check if the product with the given ID exists
+    const existingProduct = await prisma.product.findUnique({
+      where: { id: args?.productId },
+    });
 
+    if (!existingProduct) {
+      throw new Error(`Product with ID ${args?.productId} not found`);
+    }
+    const deletedProduct = await prisma.product.delete({
+      where: { id: args?.productId },
+      include: {
+        rentType: true,
+        categories: true,
+      },
+    });
+
+    return deletedProduct;
+  },
   createCategory: async (_: any, args: Category, context: any) => {
     return await prisma.category.create({ data: args });
   },

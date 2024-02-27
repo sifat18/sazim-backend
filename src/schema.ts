@@ -38,6 +38,8 @@ export const typeDefs = `#graphql
         rentTypeId: Int
         categoryIds: [Int!]
       ): Product
+      deleteProduct(productId: Int!): Product
+
   }
     
 
