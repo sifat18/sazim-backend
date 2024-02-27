@@ -12,7 +12,6 @@ const prisma = new PrismaClient();
 
 export const Mutation = {
   createProduct: async (_: any, args: any, context: any) => {
-    console.log(args);
     const { title, price, rent, description, categoryIds, rentId, createdBy } =
       args;
 
