@@ -14,4 +14,16 @@ export const Query = {
 
     return productsWithCategories;
   },
+  user: async (_: any, { id }: any) => {
+    const user = await prisma.user.findUnique({
+      where: { id: id },
+      include: { products: true },
+    });
+
+    if (!user) {
+      throw new Error(`User with id ${id} not found`);
+    }
+
+    return user;
+  },
 };
