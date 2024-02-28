@@ -14,3 +14,5 @@
 - expose port 4000 in localhost
 
 ### docker pull ibnsifat/teebay-back
+
+- [video](https://drive.google.com/file/d/1JdgWCSu1a77OPbY18SnJ8Jzel5y-BsPa/view?usp=sharing)
