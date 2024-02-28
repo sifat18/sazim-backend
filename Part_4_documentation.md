@@ -73,6 +73,7 @@ Future Improvements: Optimize queries and explore pagination for large data sets
 - Adding spinners will provide users with visual feedback while waiting for data.
 - Clarification on Product Transactions: Clear explanations on when a product will be borrowed, sold, or lent and possibility for multiple user role
 - FE Caching update
+- UI responsiveness
 
 ### Corner Cases and Considerations
 
