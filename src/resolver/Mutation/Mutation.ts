@@ -119,4 +119,22 @@ export const Mutation = {
   signUp: async (_: any, args: UserInfo, context: any) => {
     return await prisma.user.create({ data: args });
   },
+  addTransaction: async (_: any, args: any, context: any) => {
+    const { userId, productId, type, fromDate, toDate } = args;
+    const createdTransaction = await prisma.transaction.create({
+      data: {
+        userId,
+        productId,
+        type,
+        fromDate: fromDate ? new Date(fromDate) : null,
+        toDate: toDate ? new Date(toDate) : null,
+      },
+      include: {
+        product: true,
+        user: true,
+      },
+    });
+
+    return createdTransaction;
+  },
 };

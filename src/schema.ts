@@ -39,6 +39,7 @@ export const typeDefs = `#graphql
         categoryIds: [Int!]
       ): Product
       deleteProduct(productId: Int!): Product
+      addTransaction(userId:Int!, productId: Int!,type:String!, fromDate: String, toDate: String): Transaction
 
   }
     
@@ -83,7 +84,9 @@ export const typeDefs = `#graphql
             id: Int!
             user: User!
             product: Product!
-            status: String!
+            fromDate: String!
+            toDate: String!
+            type: String!
             createdAt: String!
         }
 
