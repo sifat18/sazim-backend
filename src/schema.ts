@@ -7,7 +7,7 @@ export const typeDefs = `#graphql
     categories: [Category]
     rentypes: [Rentype]
     transactions: [Transaction]
-    transaction(id: Int!): Transaction
+    transactionByUser(userId: Int!): [Transaction]
   }
   type Mutation {
     signUp(email: String!

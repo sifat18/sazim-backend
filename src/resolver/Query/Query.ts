@@ -37,4 +37,22 @@ export const Query = {
 
     return user;
   },
+  transactionByUser: async (_: any, { userId }: any, context: any) => {
+    // Your logic to fetch transactions based on userId
+    const userTransactions = await prisma.transaction.findMany({
+      where: {
+        userId: userId,
+      },
+      include: {
+        product: {
+          include: {
+            categories: true,
+            rentType: true,
+          },
+        },
+      },
+    });
+
+    return userTransactions;
+  },
 };
